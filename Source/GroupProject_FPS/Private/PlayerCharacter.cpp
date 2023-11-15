@@ -32,3 +32,15 @@ void APlayerCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputCom
 
 }
 
+void APlayerCharacter::Move(const FInputActionValue& Value)
+{
+}
+
+void APlayerCharacter::Look(const FInputActionValue& Value)
+{
+}
+
+void APlayerCharacter::Jumping()
+{
+}
+
