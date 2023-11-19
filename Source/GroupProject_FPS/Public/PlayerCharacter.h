@@ -6,9 +6,10 @@
 #include "GameFramework/Character.h"
 #include "Camera/CameraComponent.h"
 #include "Components/CapsuleComponent.h"
-#include "InputActionValue.h"
+//#include "InputActionValue.h"
+#include "EnhancedInputComponent.h"
+#include "EnhancedInputSubsystems.h"
 #include "PlayerCharacter.generated.h"
-#include "../../../../../../../../Program Files/Epic Games/UE_5.2/Engine/Plugins/EnhancedInput/Source/EnhancedInput/Public/EnhancedInputLibrary.h"
 
 UCLASS()
 class GROUPPROJECT_FPS_API APlayerCharacter : public ACharacter
