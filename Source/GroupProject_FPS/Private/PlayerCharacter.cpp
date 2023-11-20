@@ -58,6 +58,21 @@ void APlayerCharacter::BeginPlay()
 			Subsystem->AddMappingContext(DefaultMappingContext, 0);
 		}
 	}
+
+	//Disable some environmental shadows to preserve illusion of single mesh.
+	if (FPSMesh != nullptr)
+	{
+		FPSMesh->bCastDynamicShadow = false;
+
+		FPSMesh->CastShadow = false;
+
+		// Only the owning player sees this mesh.
+		FPSMesh->SetOnlyOwnerSee(true);
+	}
+
+	// The owning player doesn't see the regular (third-person) body mesh.
+	GetMesh()->SetOwnerNoSee(true);
+
 }
 
 // Called every frame
