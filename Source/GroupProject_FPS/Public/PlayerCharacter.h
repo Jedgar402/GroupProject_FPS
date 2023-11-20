@@ -2,13 +2,12 @@
 
 #pragma once
 
+#include "GameFramework/SpringArmComponent.h"
 #include "CoreMinimal.h"
 #include "GameFramework/Character.h"
-#include "Camera/CameraComponent.h"
-#include "Components/CapsuleComponent.h"
-//#include "InputActionValue.h"
-#include "EnhancedInputComponent.h"
-#include "EnhancedInputSubsystems.h"
+#include "Camera/CameraComponent.h" 
+#include "Components/CapsuleComponent.h" 
+#include "InputActionValue.h"
 #include "PlayerCharacter.generated.h"
 
 UCLASS()
