@@ -104,7 +104,7 @@ void APlayerCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputCom
 		EnhancedInputComponent->BindAction(LookAction, ETriggerEvent::Triggered, this, &APlayerCharacter::Look);
 
 		//Shoot
-		//EnhancedInputComponent->BindAction(ShootAction, ETriggerEvent::Triggered, this, &APlayerCharacter::Shoot);
+		EnhancedInputComponent->BindAction(ShootAction, ETriggerEvent::Triggered, this, &APlayerCharacter::Shoot);
 
 	}
 
@@ -151,5 +151,45 @@ void APlayerCharacter::Look(const FInputActionValue& Value)
 void APlayerCharacter::Jumping()
 {
 	Jump();
+}
+
+void APlayerCharacter::Shoot()
+{
+	//Attempt to shoot a projectile
+	if (ProjectileClass)
+	{
+		//Get camera transform
+		FVector CameraLocation;
+		FRotator CameraRotation;
+		GetActorEyesViewPoint(CameraLocation, CameraRotation);
+
+		//Set MuzzleOffset to spawn bullet slightly in front of the camera
+		MuzzleOffset.Set(50.0f, 0.0f, 0.0f);
+
+		//Transform MuzzleOffset from camera space to world space
+		FVector MuzzleLocation = CameraLocation + FTransform(CameraRotation).TransformVector(MuzzleOffset);
+
+		//Skew aim to be slightly upwards
+		FRotator MuzzleRotation = CameraRotation;
+		//MuzzleRotation.Pitch += 10.0f;
+
+		UWorld* World = GetWorld();
+		if (World)
+		{
+			FActorSpawnParameters SpawnParams;
+			SpawnParams.Owner = this;
+			SpawnParams.Instigator = GetInstigator();
+
+			// Spawn the projectile at the muzzle.
+			AFirstPersonBullet* Bullet = World->SpawnActor<AFirstPersonBullet>(ProjectileClass, MuzzleLocation, MuzzleRotation, SpawnParams);
+			if (Bullet)
+			{
+				// Set the projectile's initial trajectory.
+				FVector LaunchDirection = MuzzleRotation.Vector();
+				Bullet->FireInDirection(LaunchDirection);
+			}
+		}
+	}
+
 }
 
