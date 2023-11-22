@@ -2,6 +2,7 @@
 
 #pragma once
 
+#include "FirstPersonBullet.h"
 #include "GameFramework/SpringArmComponent.h"
 #include "CoreMinimal.h"
 #include "GameFramework/Character.h"
@@ -35,34 +36,49 @@ public:
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
 
-	// Called to bind functionality to input
+	//Called to bind functionality to input
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Input")
 	class UInputMappingContext* DefaultMappingContext;
 
-	/** Jump Input Action */
+	//Jump Input Action
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Input")
 	class UInputAction* JumpAction;
 
-	/** Move Input Action */
+	//Move Input Action
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Input")
 	class UInputAction* MoveAction;
 
-	/** Look Input Action */
+	//Look Input Action
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Input")
 	class UInputAction* LookAction;
 
-	/** Jump Input Action */
+	//Jump Input Action
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Input")
 	class UInputAction* ShootAction;
 
-	/** Called for movement input */
+	//Called for movement input
 	void Move(const FInputActionValue &Value);
 
-	/** Called for looking input */
+	//Called for looking input
 	void Look(const FInputActionValue& Value);
 
-	/** Called for Jumping input */
+	//Called for Jumping input
 	void Jumping();
+
+
+	////Shooting////
+
+	//Gun muzzle offset from the camera location.
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Gameplay")
+	FVector MuzzleOffset;
+
+	//Projectile class to spawn.
+	UPROPERTY(EditDefaultsOnly, Category = "Projectile")
+	TSubclassOf<class AFirstPersonBullet> ProjectileClass;
+
+	//Called for Shoot input
+	void Shoot();
+
 };
