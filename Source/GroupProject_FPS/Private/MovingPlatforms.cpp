@@ -1,15 +1,15 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
-#include "MovingPlatforms.h"
+#include "MovingPlatform.h"
 
 // Sets default values for this component's properties
-UMovingPlatforms::UMovingPlatforms()
+UMovingPlatform::UMovingPlatform()
 {
 	// Set this component to be initialized when the game starts
 	PrimaryComponentTick.bCanEverTick = true;
 }
 
-void UMovingPlatforms::BeginPlay()
+void UMovingPlatform::BeginPlay()
 {
 	Super::BeginPlay();
 
@@ -23,7 +23,7 @@ void UMovingPlatforms::BeginPlay()
 	CurrentLocation = InitialLocation;
 }
 
-void UMovingPlatforms::TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction)
+void UMovingPlatform::TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction)
 {
 	Super::TickComponent(DeltaTime, TickType, ThisTickFunction);
 
@@ -31,7 +31,7 @@ void UMovingPlatforms::TickComponent(float DeltaTime, ELevelTick TickType, FActo
 	MovePlatform(DeltaTime);
 }
 
-void UMovingPlatforms::MovePlatform(float DeltaTime)
+void UMovingPlatform::MovePlatform(float DeltaTime)
 {
 	// Check if the platform has reached the top or bottom
 	if (CurrentLocation.Z >= TargetHeight || CurrentLocation.Z <= InitialLocation.Z)

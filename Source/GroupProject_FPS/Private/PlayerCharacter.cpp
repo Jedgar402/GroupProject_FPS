@@ -181,7 +181,7 @@ void APlayerCharacter::Shoot()
 			SpawnParams.Instigator = GetInstigator();
 
 			// Spawn the projectile at the muzzle.
-			AFirstPersonBullet* Bullet = World->SpawnActor<AFirstPersonBullet>(ProjectileClass, MuzzleLocation, MuzzleRotation, SpawnParams);
+			AProjectileBullet* Bullet = World->SpawnActor<AProjectileBullet>(ProjectileClass, MuzzleLocation, MuzzleRotation, SpawnParams);
 			if (Bullet)
 			{
 				// Set the projectile's initial trajectory.
