@@ -76,7 +76,7 @@ public:
 
 	//Projectile class to spawn.
 	UPROPERTY(EditDefaultsOnly, Category = "Projectile")
-	TSubclassOf<class AFirstPersonBullet> ProjectileClass;
+	TSubclassOf<class AProjectileBullet> ProjectileClass;
 
 	//Called for Shoot input
 	void Shoot();
